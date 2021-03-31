@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = function (models) {
-    // associations can be defined here
+    User.belongsTo(modelss.Deck, {foreignKey: 'user_id'})
   };
   User.prototype.toSafeObject = function () {
     // remember, this cannot be an arrow function
