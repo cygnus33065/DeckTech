@@ -4,11 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     image_url: DataTypes.STRING,
     mana_value: DataTypes.INTEGER,
+    commander: DataTypes.BOOLEAN,
     gatherer: DataTypes.STRING,
     color_identity: DataTypes.ARRAY,
     keywords: DataTypes.ARRAY,
-    type: DataTypes.STRING,
-    isLegal: DataTypes.STRING
+    type: DataTypes.ARRAY,
+    isLegal: DataTypes.BOOLEAN
   }, {});
   Card.associate = function(models) {
     Card.belongsTo(models.Deck, {foreignKey: "commander_id"})

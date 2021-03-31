@@ -20,10 +20,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      commander: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-      },
       gatherer: {
         type: Sequelize.STRING(100),
         allowNull: false,
@@ -37,11 +33,11 @@ module.exports = {
         allowNull: false,
       },
       type: {
-        type: Sequelize.ARRAY(Sequelize.TEXT),
+        type: Sequelize.STRING(150),
         allowNull: false,
       },
       isLegal: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING(15),
         allowNull: false,
       },
       createdAt: {

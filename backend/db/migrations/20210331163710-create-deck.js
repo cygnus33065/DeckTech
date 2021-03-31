@@ -15,12 +15,12 @@ module.exports = {
       commander_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'Cards'}
+        references: {model: "Cards"}
       },
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'Users'}
+        references: {model: "Users"}
       },
       createdAt: {
         allowNull: false,
