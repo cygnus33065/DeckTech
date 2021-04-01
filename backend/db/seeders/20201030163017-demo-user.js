@@ -2,6 +2,7 @@
 const faker = require('faker');
 const bcrypt = require('bcryptjs');
 
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(

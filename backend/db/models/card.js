@@ -3,10 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const Card = sequelize.define('Card', {
     name: DataTypes.STRING,
     image_url: DataTypes.STRING,
+    art_url: DataTypes.STRING,
     mana_value: DataTypes.INTEGER,
     gatherer: DataTypes.STRING,
-    color_identity: DataTypes.ARRAY,
-    keywords: DataTypes.ARRAY,
+    color_identity: DataTypes.ARRAY(DataTypes.TEXT),
+    keywords: DataTypes.ARRAY(DataTypes.TEXT),
     type: DataTypes.STRING,
     isLegal: DataTypes.STRING
   }, {});

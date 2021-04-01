@@ -11,12 +11,10 @@ module.exports = {
       deck_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: "Decks"}
       },
       card_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: "Cards"}
       },
       createdAt: {
         allowNull: false,

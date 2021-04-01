@@ -16,29 +16,26 @@ module.exports = {
         type: Sequelize.STRING(256),
         allowNull: false,
       },
+      art_url: {
+        type: Sequelize.STRING(256)
+      },
       mana_value: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        type: Sequelize.INTEGER
       },
       gatherer: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
+        type: Sequelize.STRING(100)
       },
       color_identity: {
-        type: Sequelize.ARRAY(Sequelize.TEXT),
-        allowNull: false,
+        type: Sequelize.ARRAY(Sequelize.TEXT)
       },
       keywords: {
-        type: Sequelize.ARRAY(Sequelize.TEXT),
-        allowNull: false,
+        type: Sequelize.ARRAY(Sequelize.TEXT)
       },
       type: {
-        type: Sequelize.STRING(150),
-        allowNull: false,
+        type: Sequelize.STRING
       },
       isLegal: {
-        type: Sequelize.STRING(15),
-        allowNull: false,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
