@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     art_url: DataTypes.STRING,
     mana_value: DataTypes.INTEGER,
     gatherer: DataTypes.STRING,
-    color_identity: DataTypes.ARRAY(DataTypes.TEXT),
-    keywords: DataTypes.ARRAY(DataTypes.TEXT),
+    color_identity: DataTypes.ARRAY(DataTypes.INTEGER),
+    keywords: DataTypes.ARRAY(DataTypes.INTEGER),
     type: DataTypes.STRING,
     isLegal: DataTypes.STRING
   }, {});

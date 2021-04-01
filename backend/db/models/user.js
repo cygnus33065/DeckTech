@@ -50,8 +50,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = function (models) {
-    User.belongsTo(modelss.Deck, {foreignKey: 'user_id'})
+    User.hasOne(models.Deck, {foreignKey: 'user_id'})
   };
+
   User.prototype.toSafeObject = function () {
     // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance

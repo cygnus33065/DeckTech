@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Deck.associate = function(models) {
     Deck.hasOne(models.Card, {foreignKey: 'commander_id'})
-    Deck.hasOne(models.User, {foreignKey: 'user_id'})
+    Deck.belongsTo(models.User, {foreignKey: 'user_id'})
 
     const columnMapping = {
       through: 'DeckCard',
