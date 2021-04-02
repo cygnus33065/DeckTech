@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     },
   },
+  items: {
+    color:theme.palette.secondary.light,
+    backgroundColor: theme.palette.primary.light
+  },
   paper: {
     '& > *': {
       margin: theme.spacing(1),
@@ -19,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     position: "absolute",
     width: 400,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.primary.dark,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2,3,4),
@@ -68,6 +72,7 @@ export default function LoginFormPage() {
       variant="outlined"
       value={credential}
       onChange={(e) => setCredential(e.target.value)}
+      className={classes.items}
       />
       <TextField
       type="password"
@@ -76,8 +81,9 @@ export default function LoginFormPage() {
       variant="outlined"
       value={password}
       onChange={(e) => setPassword(e.target.value)}
+      className={classes.items}
       />
-      <Button type='submit' variant="contained">Login</Button>
+      <Button type='submit' variant="contained" className={classes.items}>Login</Button>
     </form>
   );
 }

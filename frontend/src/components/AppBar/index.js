@@ -9,25 +9,40 @@ import MenuIcon from "@material-ui/icons/Menu"
 import Modal from '@material-ui/core/Modal';
 import LoginFormPage from "../LoginFormPage/index"
 import Box from '@material-ui/core/Box';
+import dtLogo from "../../assets/images/dtLogo.png"
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor: theme.palette.primary.main
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: theme.palette.secondary.main,
   },
   title: {
     flexGrow: 1,
+    color: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
+  },
+  button:{
+    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.secondary.main,
   },
   paper: {
     position: "absolute",
     width: 400,
-    backgroundColor: theme.palette.primary,
+    backgroundColor: theme.palette.primary.main,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2,3,4),
   },
+  box: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  }
 }));
 
 export default function ButtonAppBar() {
@@ -46,16 +61,19 @@ export default function ButtonAppBar() {
   return (
     <div className={classes.root}>
       <AppBar postion="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+        <Toolbar className={classes.root}>
+          <IconButton edge="start" className={classes.menuButton}  aria-label="menu">
+            <MenuIcon fontSize="large"/>
           </IconButton>
           <Typography variant="h4"  className={classes.title}>
-          <Box textAlign="center" m={1}>
-            DeckTech
+          {/* <Box textAlign="center" m={1}>
+          </Box> */}
+          <Box  textAlign="center" className={classes.box} m={1}>
+            <img src={dtLogo} style={{width:"75px"}} alt="logo"/>
+              DeckTech
           </Box>
           </Typography>
-          <Button color="secondary" onClick={handleOpen}>Login</Button>
+          <Button color="inherit" className={classes.button} onClick={handleOpen}>Login</Button>
         </Toolbar>
       </AppBar>
       <Modal
