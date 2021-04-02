@@ -5,6 +5,9 @@ import SignupFormPage from "./components/SignupFormPage";
 // import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import ButtonAppBar from "./components/AppBar"
+import {ThemeProvider, createMuiTheme} from "@material-ui/core/styles"
+
 
 function App() {
   const dispatch = useDispatch();
@@ -13,9 +16,26 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+
+  const theme= createMuiTheme({
+    pallette: {
+      primary: {
+        main: '#5a5c66',
+        light: '#878994',
+        dark: '#31333c',
+      },
+      secondary: {
+        main: '#aeea00',
+        light: 'e4ff54',
+        dark: '#79b700',
+      }
+    }
+  });
+
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+    <ThemeProvider theme={theme}>
+      <ButtonAppBar />
       {isLoaded && (
         <Switch>
           {/* <Route path="/login" >
@@ -26,6 +46,7 @@ function App() {
           </Route>
         </Switch>
       )}
+    </ThemeProvider>
     </>
   );
 }
