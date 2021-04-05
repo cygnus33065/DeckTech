@@ -4,8 +4,10 @@ import {Redirect} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link'
+import Typography from '@material-ui/core/Typography';
 import * as sessionActions from "../../store/session";
-import {closeLogin} from "../../store/modal"
+import {closeLogin, openSignup} from "../../store/modal"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,6 +67,12 @@ export default function LoginFormPage() {
       });
   };
 
+  const switchModal = () => {
+    dispatch(closeLogin());
+    dispatch(openSignup());
+  }
+
+
   return (
     <form className={classes.paper} noValidate autoComplete="off" onSubmit={handleSubmit}>
       <ul>
@@ -74,7 +82,7 @@ export default function LoginFormPage() {
       </ul>
       <TextField
       type="text"
-      id="outlined-basic"
+      id="outlined-basic-credential"
       label="Username or Email"
       variant="outlined"
       value={credential}
@@ -83,7 +91,7 @@ export default function LoginFormPage() {
       />
       <TextField
       type="password"
-      id="outlined-basic"
+      id="outlined-basic-password"
       label="Password"
       variant="outlined"
       value={password}
@@ -91,6 +99,9 @@ export default function LoginFormPage() {
       className={classes.items}
       />
       <Button type='submit' variant="contained" className={classes.items}>Login</Button>
+      <Typography className={classes.items}>
+      <Link href='#' onClick={switchModal}>Don't have an account? Click here to signup.</Link>
+      </Typography>
     </form>
   );
 }

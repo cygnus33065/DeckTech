@@ -8,10 +8,11 @@ import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import Modal from '@material-ui/core/Modal';
-import LoginFormPage from "../LoginFormPage/index"
 import Box from '@material-ui/core/Box';
 import dtLogo from "../../assets/images/dtLogo.png"
-import {openLogin, closeLogin} from "../../store/modal"
+import LoginFormPage from "../LoginFormPage/index"
+import SignupFormModal from "../SignupFormModal/index"
+import {openLogin, closeLogin, openSignup, closeSignup} from "../../store/modal"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     backgroundColor: theme.palette.secondary.main,
     disableRipple: "true",
+    marginRight: theme.spacing(2),
   },
   paper: {
     position: "absolute",
@@ -50,19 +52,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles()
-  const open = useSelector((state) => state.modalReducer.loginShow)
+  const loginState = useSelector((state) => state.modalReducer.loginShow)
+  const signupState = useSelector((state) => state.modalReducer.signupShow)
   const dispatch = useDispatch()
   // const [open, setOpen] = useState(false)
 
-console.log(open)
-  const handleOpen = () => {
+  const loginOpen = () => {
     // setOpen(true);
     dispatch(openLogin())
   }
 
-  const handleClose = () => {
+  const loginClose = () => {
     // setOpen(false);
     dispatch(closeLogin())
+  }
+
+  const signupOpen = () => {
+    dispatch(openSignup())
+  }
+
+  const signupClose = () => {
+    dispatch(closeSignup())
   }
 
   return (
@@ -80,17 +90,26 @@ console.log(open)
               DeckTech
           </Box>
           </Typography>
-          <Button className={classes.button}  style= {{fontWeight: "800"}}onClick={handleOpen}>Login</Button>
+          <Button className={classes.button}  style= {{fontWeight: "800"}}onClick={loginOpen}>Login</Button>
+          <Button className={classes.button}  style= {{fontWeight: "800"}}onClick={signupOpen}>SIgnup</Button>
         </Toolbar>
       </AppBar>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={loginState}
+        onClose={loginClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         >
         <LoginFormPage />
        </Modal>
+       <Modal
+        open={signupState}
+        onClose={signupClose}
+        aria-labelledby="signup-form-modal-title"
+        aria-describedby="signup-form-modal-description"
+        >
+          <SignupFormModal />
+        </Modal>
     </div>
   )
 }
