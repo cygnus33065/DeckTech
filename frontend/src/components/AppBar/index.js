@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+// import React, {useState} from "react";
+import {useSelector, useDispatch} from "react-redux"
 import {makeStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
@@ -10,6 +11,7 @@ import Modal from '@material-ui/core/Modal';
 import LoginFormPage from "../LoginFormPage/index"
 import Box from '@material-ui/core/Box';
 import dtLogo from "../../assets/images/dtLogo.png"
+import {openLogin, closeLogin} from "../../store/modal"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   button:{
     color: theme.palette.primary.main,
     backgroundColor: theme.palette.secondary.main,
+    disableRipple: "true",
   },
   paper: {
     position: "absolute",
@@ -47,15 +50,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles()
-  const [open, setOpen] = useState(false)
+  const open = useSelector((state) => state.modalReducer.loginShow)
+  const dispatch = useDispatch()
+  // const [open, setOpen] = useState(false)
 
-
+console.log(open)
   const handleOpen = () => {
-    setOpen(true);
+    // setOpen(true);
+    dispatch(openLogin())
   }
 
   const handleClose = () => {
-    setOpen(false);
+    // setOpen(false);
+    dispatch(closeLogin())
   }
 
   return (
@@ -73,7 +80,7 @@ export default function ButtonAppBar() {
               DeckTech
           </Box>
           </Typography>
-          <Button color="inherit" className={classes.button} onClick={handleOpen}>Login</Button>
+          <Button className={classes.button}  style= {{fontWeight: "800"}}onClick={handleOpen}>Login</Button>
         </Toolbar>
       </AppBar>
       <Modal

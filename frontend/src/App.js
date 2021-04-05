@@ -30,7 +30,21 @@ function App() {
         light: '#e4ff54',
         dark: '#79b700',
       }
-    }
+    },
+    typography: {
+      fontFamily: [
+        'Saira',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '-apple-system',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+    },
   });
 
   // console.log(theme)
@@ -39,7 +53,6 @@ function App() {
     <>
     <ThemeProvider theme={theme}>
       <ButtonAppBar />
-    </ThemeProvider>
       {isLoaded && (
         <Switch>
           {/* <Route path="/login" >
@@ -50,6 +63,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      </ThemeProvider>
     </>
   );
 }

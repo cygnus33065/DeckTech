@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import {Redirect} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
 import Button from '@material-ui/core/Button';
+import * as sessionActions from "../../store/session";
+import {closeLogin} from "../../store/modal"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,6 +50,11 @@ export default function LoginFormPage() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  if (sessionUser) {
+    dispatch(closeLogin())
+    return <Redirect to="/" />;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

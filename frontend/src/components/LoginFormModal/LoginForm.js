@@ -14,9 +14,11 @@ function LoginForm() {
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password })).catch(
       (res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
+        if (res.data && res.data.errors){
+          setErrors(res.data.errors);
+        }
       }
-    );
+      );
   };
 
   return (

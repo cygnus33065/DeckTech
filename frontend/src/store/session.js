@@ -1,4 +1,5 @@
 import { fetch } from './csrf.js';
+import {closeLogin} from "./modal"
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
@@ -18,6 +19,7 @@ export const login = ({ credential, password }) => async (dispatch) => {
     body: JSON.stringify({ credential, password })
   });
   dispatch(setUser(res.data.user));
+  if (res.ok) dispatch(closeLogin())
   return res;
 };
 

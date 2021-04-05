@@ -26,8 +26,6 @@ const createCardObjects = async () => {
       cards.push(cardObj)
     }
   }
-  console.log(cards[0])
   return cards
 }
-createCardObjects()
 module.exports = {createCardObjects}
