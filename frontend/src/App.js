@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-// import LoginFormPage from "./components/LoginFormPage";
-import * as sessionActions from "./store/session";
-// import Navigation from "./components/Navigation";
-import ButtonAppBar from "./components/AppBar"
 import { createMuiTheme} from "@material-ui/core/styles"
 import {ThemeProvider} from "@material-ui/styles"
+import CssBaseline from '@material-ui/core/CssBaseline';
+// import LoginFormPage from "./components/LoginFormPage";
+// import Navigation from "./components/Navigation";
+import HomePage from './components/Home'
+import ButtonAppBar from "./components/AppBar"
+import SignupFormPage from "./components/SignupFormPage";
+import * as sessionActions from "./store/session";
 
 
 function App() {
@@ -29,6 +31,9 @@ function App() {
         main: '#aeea00',
         light: '#e4ff54',
         dark: '#79b700',
+      },
+      background:{
+        default: '#31333c'
       },
     },
     typography: {
@@ -52,9 +57,13 @@ function App() {
   return (
     <>
     <ThemeProvider theme={theme}>
+      <CssBaseline>
       <ButtonAppBar />
       {isLoaded && (
         <Switch>
+          <Route path='/'>
+            <HomePage />
+          </Route>
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
@@ -63,6 +72,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      </CssBaseline>
       </ThemeProvider>
     </>
   );
