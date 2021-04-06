@@ -1,4 +1,5 @@
-import React, {useState}from 'react';
+import React, {useEffect, useState}from 'react';
+import {useDispatch} from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import {makeStyles} from '@material-ui/core/styles';
@@ -31,19 +32,25 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const HomePage = async () => {
+const HomePage = () => {
+  const [image, setImage] = useState();
   const classes = useStyles();
-  // const bannerImage = await;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const randCardId = Math.random() * (5547 - 1) + 1;
+    console.log(randCardId);
+    // dispatch()
+  }, []);
 
   return (
-    // <Box className={classes.root}>
+
     <>
       <Box className={classes.banner}></Box>
       <Box className={classes.textbox}>
         <Typography variant="h2" className={classes.text}>Welcome to DeckTech</Typography>
       </Box>
     </>
-    // </Box>
   )
 }
 

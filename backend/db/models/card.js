@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     isLegal: DataTypes.STRING
   }, {});
   Card.associate = function(models) {
-    Card.belongsTo(models.Deck, {foreignKey: "commander_id"})
+    // Card.belongsTo(models.Deck, {foreignKey: "commander_id"})
 
     const columnMapping = {
       through: 'DeckCard',
@@ -22,5 +22,12 @@ module.exports = (sequelize, DataTypes) => {
 
     Card.belongsToMany(models.Deck, columnMapping)
   };
+
+  Card.randomCard = async function () {
+    return await Card.findOne({
+      order: sequelize.random()
+    });
+  }
+
   return Card;
 };

@@ -15,9 +15,11 @@ import * as sessionActions from "./store/session";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
 
 
   const theme = createMuiTheme({
@@ -59,19 +61,16 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline>
       <ButtonAppBar />
-      {isLoaded && (
-        <Switch>
-          <Route path='/'>
-            <HomePage />
-          </Route>
-          {/* <Route path="/login" >
-            <LoginFormPage />
-          </Route> */}
+      {/* {isLoaded && ( */}
+      <Switch>
+        <Route path='/'>
+          <HomePage />
+        </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-        </Switch>
-      )}
+      </Switch>
+      {/* )} */}
       </CssBaseline>
       </ThemeProvider>
     </>

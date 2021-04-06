@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER
   }, {});
   Deck.associate = function(models) {
-    Deck.hasOne(models.Card, {foreignKey: 'commander_id'})
+    // Deck.hasMany(models.Card, {foreignKey: 'commander_id'})
     Deck.belongsTo(models.User, {foreignKey: 'user_id'})
 
     const columnMapping = {
