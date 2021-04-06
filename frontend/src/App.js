@@ -29,7 +29,7 @@ function App() {
         main: '#aeea00',
         light: '#e4ff54',
         dark: '#79b700',
-      }
+      },
     },
     typography: {
       fontFamily: [

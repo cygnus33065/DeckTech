@@ -17,8 +17,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   items: {
+    color:theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.light,
+  },
+  textFields:{
     color:theme.palette.secondary.light,
-    backgroundColor: theme.palette.primary.light
+    backgroundColor:theme.palette.secondary.dark
   },
   paper: {
     '& > *': {
@@ -84,19 +88,21 @@ export default function LoginFormPage() {
       type="text"
       id="outlined-basic-credential"
       label="Username or Email"
-      variant="outlined"
+      variant="filled"
       value={credential}
       onChange={(e) => setCredential(e.target.value)}
       className={classes.items}
+      color='secondary'
       />
       <TextField
       type="password"
       id="outlined-basic-password"
       label="Password"
-      variant="outlined"
+      variant="filled"
       value={password}
       onChange={(e) => setPassword(e.target.value)}
       className={classes.items}
+      color='secondary'
       />
       <Button type='submit' variant="contained" className={classes.items}>Login</Button>
       <Typography className={classes.items}>

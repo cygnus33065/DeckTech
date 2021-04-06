@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   items: {
-    color:theme.palette.secondary.light,
+    color:theme.palette.secondary.main,
     backgroundColor: theme.palette.primary.light
   },
   paper: {
@@ -90,6 +90,7 @@ export default function SignupForm() {
       value={username}
       onChange={(e) => setUsername(e.target.value)}
       className={classes.items}
+      color='secondary'
       />
       <TextField
       type='text'
@@ -99,6 +100,7 @@ export default function SignupForm() {
       value={email}
       onChange={(e) => setEmail(e.target.value)}
       className={classes.items}
+      color='secondary'
       />
       <TextField
       type='password'
@@ -108,6 +110,7 @@ export default function SignupForm() {
       value={password}
       onChange={(e) => setPassword(e.target.value)}
       className={classes.items}
+      color='secondary'
       />
       <TextField
       type='password'
@@ -117,6 +120,7 @@ export default function SignupForm() {
       value={confirmPassword}
       onChange={(e) => setConfirmPassword(e.target.value)}
       className={classes.items}
+      color='secondary'
       />
       <Button type='submit' variant="contained" className={classes.items}>Signup</Button>
       <Typography className={classes.items}>
