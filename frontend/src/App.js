@@ -66,9 +66,9 @@ function App() {
         <Route path='/'>
           <HomePage />
         </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
+        <Route path="/signup">
+          <SignupFormPage />
+        </Route>
       </Switch>
       {/* )} */}
       </CssBaseline>

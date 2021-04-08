@@ -22,9 +22,7 @@ export default function SimpleModal() {
   const dispatch = useDispatch()
   const loginState = useSelector((state) => state.modalReducer.login)
 
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // }
+  
 
   const handleClose = () => {
     dispatch(closeLogin());

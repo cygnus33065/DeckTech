@@ -8,12 +8,13 @@ const router = express.Router();
 
 
 router.get('/random', asyncHandler(async (req,res) => {
-  const {id} =req.body;
-  // const response = await Card.findByPk(id)
   const response = await Card.randomCard()
   const url = response.dataValues.art_url
   return res.json({url});
 }))
 
+router.get('/search'), asyncHandler(async (req,res) => {
+  
+})
 
 module.exports = router
