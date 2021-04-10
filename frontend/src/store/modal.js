@@ -4,6 +4,8 @@ const MODAL_OPEN_SIGNUP = 'signupModal/Open'
 const MODAL_CLOSE_SIGNUP = 'signupModal/Close'
 const DRAWER_OPEN_SEARCH = 'searchDrawer/open'
 const DRAWER_CLOSE_SEARCH = 'searchDrawer/close'
+const DRAWER_OPEN_CARD_SEARCH = 'cardSearchDrawer/open'
+const DRAWER_CLOSE_CARD_SEARCH = 'cardSearchDrawer/close'
 
 export const openLogin = () => {
   return {
@@ -41,11 +43,24 @@ export const closeSearch = () => {
   }
 }
 
+export const openCardSearch = () => {
+  return {
+    type: DRAWER_OPEN_CARD_SEARCH,
+  }
+}
+
+export const closeCardSearch = () => {
+  return {
+    type: DRAWER_CLOSE_CARD_SEARCH,
+  }
+}
+
 
 const initialState = {
   loginShow: false,
   signupShow: false,
   searchDrawer: false,
+  cardSearchShow: false,
 }
 
 const modalReducer = (state = initialState, action) => {
@@ -68,6 +83,12 @@ const modalReducer = (state = initialState, action) => {
       return newState;
     case DRAWER_CLOSE_SEARCH:
       newState = Object.assign({}, state, {searchShow: false});
+      return newState;
+    case DRAWER_OPEN_CARD_SEARCH:
+      newState = Object.assign({}, state, {cardSearchShow: true});
+      return newState;
+    case DRAWER_CLOSE_CARD_SEARCH:
+      newState = Object.assign({}, state, {cardSearchShow: false});
       return newState;
     default:
       return state;

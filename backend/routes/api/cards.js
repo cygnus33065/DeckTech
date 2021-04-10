@@ -13,8 +13,13 @@ router.get('/random', asyncHandler(async (req,res) => {
   return res.json({url});
 }))
 
-router.get('/search'), asyncHandler(async (req,res) => {
-  
-})
+router.post('/search', asyncHandler(async (req,res) => {
+  const {query} = req.body
+  const search = await Card.searchCards(query)
+  console.log(search)
+return search
+}))
+
+
 
 module.exports = router

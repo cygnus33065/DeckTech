@@ -1,4 +1,6 @@
 'use strict';
+const Sequelize = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   const Card = sequelize.define('Card', {
     name: DataTypes.STRING,
@@ -23,10 +25,22 @@ module.exports = (sequelize, DataTypes) => {
     Card.belongsToMany(models.Deck, columnMapping)
   };
 
+  const Op = Sequelize.Op;
+
   Card.randomCard = async function () {
     return await Card.findOne({
       order: sequelize.random()
     });
+  }
+
+  Card.searchCards = async function(query) {
+    const cards = Card.findAll({
+      where: {
+        name: {[Op.iLike]: `%${query}%`}
+      },
+      limit: 10
+    })
+    console.log(cards)
   }
 
   return Card;

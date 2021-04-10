@@ -10,6 +10,7 @@ import HomePage from './components/Home'
 import ButtonAppBar from "./components/AppBar"
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
+import CreateDeck from './components/CreateDeck'
 
 
 function App() {
@@ -63,11 +64,14 @@ function App() {
       <ButtonAppBar />
       {/* {isLoaded && ( */}
       <Switch>
-        <Route path='/'>
+        <Route exact={true} path='/'>
           <HomePage />
         </Route>
-        <Route path="/signup">
+        <Route path="/signup" exact={true}>
           <SignupFormPage />
+        </Route>
+        <Route path="/createdeck" exact={true}>
+          <CreateDeck />
         </Route>
       </Switch>
       {/* )} */}

@@ -14,6 +14,18 @@ export const getBannerImage = () => async (dispatch) => {
   return res;
 }
 
+export const searchCards = (query) => async (dispatch) => {
+  console.log(query);
+  const res = await fetch('/api/cards/search', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(query)
+  })
+  return res.json();
+}
+
 const initialState = {image: null};
 
 function cardsReducer(state = initialState, action) {

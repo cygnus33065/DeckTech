@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useSelector, useDispatch} from "react-redux"
+import  {useHistory} from "react-router-dom";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar"
 import Menu from "@material-ui/core/Menu"
@@ -95,7 +96,8 @@ export default function ButtonAppBar() {
   const classes = useStyles()
   const loginState = useSelector((state) => state.modalReducer.loginShow)
   const signupState = useSelector((state) => state.modalReducer.signupShow)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const history= useHistory();
   const [anchorEl, setAnchorEl] = useState(null)
 
   const loginOpen = () => {
@@ -130,6 +132,11 @@ export default function ButtonAppBar() {
     setAnchorEl(null);
   }
 
+  const clickDeck = () => {
+    setAnchorEl(null);
+    history.push('/createdeck')
+  }
+
   return (
     <div className={classes.root}>
       <AppBar postion="static">
@@ -146,7 +153,7 @@ export default function ButtonAppBar() {
           TransitionComponent={Zoom}
           >
             <StyledMenuItem >Profile</StyledMenuItem>
-            <StyledMenuItem >Create Deck</StyledMenuItem>
+            <StyledMenuItem onClick={clickDeck}>Create Deck</StyledMenuItem>
             <StyledMenuItem onClick={onLogout}>Logout</StyledMenuItem>
           </StyledMenu>
           <Typography variant="h4"  className={classes.title}>
