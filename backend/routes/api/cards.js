@@ -15,11 +15,18 @@ router.get('/random', asyncHandler(async (req,res) => {
 
 router.post('/search', asyncHandler(async (req,res) => {
   const {query} = req.body
+
   const search = await Card.searchCards(query)
-  console.log(search)
-return search
+  const cards = res.json(search)
+  // console.log(cards)
+
+return cards
 }))
 
+router.get('/sample', asyncHandler(async (req,res) => {
+  const response = await Card.sampleDeck();
+  return res.json({response})
+}))
 
 
 module.exports = router

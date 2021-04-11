@@ -3,9 +3,12 @@ import {useSelector, useDispatch} from 'react-redux';
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from '@material-ui/core/Drawer';
 import TextField from '@material-ui/core/TextField';
+// import Card from "@material-ui/core/Card";
+// import Typography from "@material-ui/core/Typography";
 import {searchCards} from "../../store/cards"
 
 import {openCardSearch, closeCardSearch} from '../../store/modal';
+import Card from "../Card"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper:{
     backgroundColor: 'none',
-    // color: theme.palette.primary.main,
+    color: theme.palette.primary.main,
   }
 }))
 
@@ -26,9 +29,10 @@ const useStyles = makeStyles((theme) => ({
 export default function CardDrawer() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const cards = useSelector((state) => state.cardsReducer.cards)
   const isOpen = useSelector((state) => state.modalReducer.cardSearchShow)
   const [search, setSearch] = useState();
-  const [searchResult, setSearchResult] = useState();
+  const [cardsResult, setCardsResult] = useState()
 
 
    const toggleDrawer = () => {
@@ -40,11 +44,14 @@ export default function CardDrawer() {
   }
 
   useEffect(() => {
-    const cards= dispatch(searchCards(search))
-    setSearchResult(cards);
-  },[search]);
+     dispatch(searchCards(search))
+  },[search, dispatch]);
 
-  console.log(searchResult)
+  useEffect(() => {
+    setCardsResult(cards);
+  },[cards, dispatch])
+
+  // console.log(cardsResult)
   return (
     <div>
       <Drawer anchor='left' open={isOpen} onClose={toggleDrawer} className={classes.paper}>
@@ -55,7 +62,9 @@ export default function CardDrawer() {
         className={classes.search}
         onChange={(e) => setSearch(e.target.value)}
         color='secondary'></TextField>
-        {searchResult && <></>}
+        {/* <Card className={classes.card}/> */}
+        {cardsResult && cardsResult.map(card => <Card card={card}/>)}
+        {/* <Typography variant='h1' className={classes.card}>This is a test</Typography> */}
       </Drawer>
     </div>
   )

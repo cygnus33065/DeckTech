@@ -33,14 +33,20 @@ module.exports = (sequelize, DataTypes) => {
     });
   }
 
+  Card.sampleDeck = async function () {
+    return await Card.findAll({
+      order: sequelize.random(),
+      limit: 100,
+    });
+  }
+
   Card.searchCards = async function(query) {
-    const cards = Card.findAll({
+    return await Card.findAll({
       where: {
-        name: {[Op.iLike]: `%${query}%`}
+        name: {[Op.iLike]: `${query}%`}
       },
       limit: 10
     })
-    console.log(cards)
   }
 
   return Card;

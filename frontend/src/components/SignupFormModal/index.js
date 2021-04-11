@@ -21,7 +21,7 @@ export default function SignupFormModal () {
   const classes = useStyles();
   const dispatch = useDispatch();
   const signupState = useSelector((state) => state.modalReducer.signupShow)
-  console.log(signupState)
+  // console.log(signupState)
   const handleClose = () => {
     dispatch(closeSignup());
   };
