@@ -7,6 +7,7 @@ import Modal from '@material-ui/core/Modal';
 import CardDrawer from "../CardDrawer"
 import {openCardSearch, closeCardSearch} from "../../store/modal"
 import CreateDeckForm from './CreateDeckForm';
+import {newDeckOpen, newDeckClose} from '../../store/modal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +41,7 @@ const CreateDeck = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const cardOpen = useSelector((state) => state.modalReducer.cardSearchShow);
-  const [formOpen, setFormOpen] = useState(true);
+  const formOpen = useSelector((state) => state.modalReducer.newDeck);
 
   const toggleCardDrawer = () => {
     if(cardOpen){
@@ -50,9 +51,7 @@ const CreateDeck = () => {
     }
   }
 
-  const handleClose = () => {
 
-  }
 
 
   return (
@@ -60,7 +59,6 @@ const CreateDeck = () => {
     <Modal
       BackdropProps={{ invisible: true }}
       open = {formOpen}
-      onClose={handleClose}
       aria-labelledby="create-deck-modal"
       aria-describedby='create-a-deck'
       >

@@ -6,6 +6,8 @@ const DRAWER_OPEN_SEARCH = 'searchDrawer/open'
 const DRAWER_CLOSE_SEARCH = 'searchDrawer/close'
 const DRAWER_OPEN_CARD_SEARCH = 'cardSearchDrawer/open'
 const DRAWER_CLOSE_CARD_SEARCH = 'cardSearchDrawer/close'
+const NEW_DECK_CLOSE = 'newDeck/close'
+const NEW_DECK_OPEN = 'newDeck/open'
 
 export const openLogin = () => {
   return {
@@ -55,12 +57,24 @@ export const closeCardSearch = () => {
   }
 }
 
+export const newDeckOpen = () => {
+  return {
+    type: NEW_DECK_OPEN,
+  }
+}
+
+export const newDeckClose = () => {
+  return {
+    type:NEW_DECK_CLOSE,
+  }
+}
 
 const initialState = {
   loginShow: false,
   signupShow: false,
   searchDrawer: false,
   cardSearchShow: false,
+  newDeck: true,
 }
 
 const modalReducer = (state = initialState, action) => {
@@ -90,7 +104,13 @@ const modalReducer = (state = initialState, action) => {
     case DRAWER_CLOSE_CARD_SEARCH:
       newState = Object.assign({}, state, {cardSearchShow: false});
       return newState;
-    default:
+    case NEW_DECK_OPEN:
+      newState = Object.assign({}, state, {newDeck: true});
+      return newState;
+    case NEW_DECK_CLOSE:
+      newState = Object.assign({}, state, {newDeck: false});
+      return newState;
+      default:
       return state;
     }
 }

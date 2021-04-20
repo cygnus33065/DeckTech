@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/Button";
 import Select from '@material-ui/core/Select';
 import * as sessionActions from '../../store/session';
+import {newDeckOpen, newDeckClose} from "../../store/modal"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,11 +52,11 @@ const CreateDeckForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
 
-  const handleSubmit = (e) => {
-
+  const handleSubmit = () => {
+    dispatch(newDeckClose());
   }
 
-  
+
 
   return (
     <form className={classes.paper} noValidate autoComplete='off' onSubmit={handleSubmit}>
