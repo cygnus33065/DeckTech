@@ -53,6 +53,22 @@ function App() {
         '"Segoe UI Symbol"',
       ].join(','),
     },
+    overrides: {
+      // Style sheet name ⚛️
+      MuiDrawer: {
+        paper: {
+          backgroundColor:  '#d6d6d6',
+          overflowY: 'auto',
+          display: 'inline-block'
+        }
+      },
+      MuiButton: {
+        // Name of the rule
+        root:{
+          borderRadius: 0
+        }
+      }
+    }
   });
 
   // console.log(theme)

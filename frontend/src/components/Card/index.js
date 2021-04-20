@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Box from '@material-ui/core/Box';
+import {useDispatch, useSelector} from 'react-redux'
 // import Typography from '@material-ui/core/Typography';
 
 const Card = ({card}) => {
@@ -9,15 +10,18 @@ const Card = ({card}) => {
     backgroundRepeat: "no-repeat",
     backgroundSize: "100%",
     backgroundPosition: 'center',
-    width: '50%',
-    height: '50%',
+    width: '200px',
+    height: '290px',
     // marginTop: '5.5rem',
     boxSizing:'border-box',
   }
 
+  const addCard = (e) => {
+
+  }
 
 return (
-  <Box style={cardStyle}></Box>
+  <Box style={cardStyle} id={card.id} onclick={addCard}></Box>
 )
 }
 

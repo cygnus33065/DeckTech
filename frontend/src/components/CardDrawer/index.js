@@ -16,11 +16,13 @@ const useStyles = makeStyles((theme) => ({
     width:350,
     marginTop: 10,
     color: theme.palette.secondary.main,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
   },
   paper:{
-    backgroundColor: 'none',
-    color: theme.palette.primary.main,
+    // paper:{
+    //   background: theme.palette.secondary.main,
+    //   color: theme.palette.primary.main,
+    // }
   }
 }))
 
@@ -54,7 +56,7 @@ export default function CardDrawer() {
   // console.log(cardsResult)
   return (
     <div>
-      <Drawer anchor='left' open={isOpen} onClose={toggleDrawer} className={classes.paper}>
+      <Drawer BackdropProps={{ invisible: true }} anchor='left' open={isOpen} onClose={toggleDrawer} className={classes.paper}>
         <TextField
         id='card-search-field'
         label='Search for a deck'

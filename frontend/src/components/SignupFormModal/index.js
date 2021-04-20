@@ -29,6 +29,7 @@ export default function SignupFormModal () {
   return (
     <div>
       <Modal
+        BackdropProps={{ invisible: true }}
         open={signupState}
         onClose={handleClose}
         aria-labelledby="signup-form-modal-title"

@@ -22,7 +22,7 @@ export default function SimpleModal() {
   const dispatch = useDispatch()
   const loginState = useSelector((state) => state.modalReducer.login)
 
-  
+
 
   const handleClose = () => {
     dispatch(closeLogin());
@@ -35,6 +35,7 @@ export default function SimpleModal() {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
+        BackdropProps={{ invisible: true }}
         >
           <LoginFormPage className={classes.paper}/>
       </Modal>

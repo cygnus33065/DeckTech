@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler')
-const Sequelize = require('sequelize');
+
 
 const {Card} = require('../../db/models')
 
