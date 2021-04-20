@@ -7,6 +7,6 @@ const newDeck = (deck) => ({
   deck,
 })
 
-export const createDeck = () => async (dispatch) => {
-
+export const createDeck = ({deckName, commander_id, user_id}) => async (dispatch) => {
+  
 }
