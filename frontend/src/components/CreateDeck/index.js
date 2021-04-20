@@ -50,8 +50,9 @@ const CreateDeck = () => {
     }
   }
 
+  const handleClose = () => {
 
-
+  }
 
 
   return (

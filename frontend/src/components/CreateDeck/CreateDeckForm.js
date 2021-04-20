@@ -51,6 +51,12 @@ const CreateDeckForm = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
 
+  const handleSubmit = (e) => {
+
+  }
+
+  
+
   return (
     <form className={classes.paper} noValidate autoComplete='off' onSubmit={handleSubmit}>
       <Typography className={classes.items}>New Deck</Typography>
