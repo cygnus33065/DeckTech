@@ -1,7 +1,8 @@
 import {fetch} from './csrf'
 
 const SET_HOME_BANNER = 'home/banner';
-const SET_CARDS = 'deck/cards'
+const SET_CARDS = 'deck/cards';
+const SET_COMMANDERS = 'cards/commanders';
 
 const setBannerImg = (image) => ({
   type: SET_HOME_BANNER,
@@ -11,6 +12,11 @@ const setBannerImg = (image) => ({
 const setCards = (cards) => ({
   type: SET_CARDS,
   cards,
+})
+
+const setCommanders = (commanders) => ({
+  type: SET_COMMANDERS,
+  commanders
 })
 
 
@@ -31,6 +37,13 @@ export const searchCards = (query) => async (dispatch) => {
   return cards
 }
 
+export const getCommanders =  () => async (dispatch) => {
+  const res = await fetch('/api/cards/commanders')
+  const commanders = res.data
+  dispatch(setCommanders(commanders));
+  return commanders
+}
+
 const initialState = {image: null};
 
 function cardsReducer(state = initialState, action) {
@@ -42,6 +55,9 @@ function cardsReducer(state = initialState, action) {
     case SET_CARDS:
       newState = Object.assign({}, state, {cards: action.cards})
       return newState;
+    case SET_COMMANDERS:
+      newState = Object.assign({}, state, {commanders: action.commanders});
+      return newState
     default:
       return state;
   }

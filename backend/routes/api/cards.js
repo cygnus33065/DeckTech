@@ -23,9 +23,9 @@ router.post('/search', asyncHandler(async (req,res) => {
 return cards
 }))
 
-router.get('/sample', asyncHandler(async (req,res) => {
-  const response = await Card.sampleDeck();
-  return res.json({response})
+router.get('/commanders', asyncHandler(async (req,res) => {
+  const commanders = await Card.commanders();
+  return res.json(commanders)
 }))
 
 

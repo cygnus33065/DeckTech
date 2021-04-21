@@ -49,5 +49,12 @@ module.exports = (sequelize, DataTypes) => {
     })
   }
 
+  Card.commanders = async function () {
+    return await Card.findAll ({
+      where: {
+        type: {[Op.iLike]: '%Legendary Creature%'}
+      }
+    })
+  }
   return Card;
 };

@@ -1,12 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
 import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/Button";
 import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 import * as sessionActions from '../../store/session';
-import {newDeckOpen, newDeckClose} from "../../store/modal"
+import {newDeckClose} from "../../store/modal"
+import {getCommanders} from '../../store/cards';
+import {createNewDeck} from '../../store/deck';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,12 +53,29 @@ const CreateDeckForm = () => {
   const classes = useStyles();
   const dispatch=useDispatch();
   const [deckName, setDeckName] = useState('');
-  const [commander, setCommander] = useState(0);
+  const [deckCommander, setDeckCommander] = useState('None');
+  const [open, setOpen] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
+  const commanders = useSelector((state) => state.cardsReducer.commanders)
+
+  useEffect(() => {
+    dispatch(getCommanders())
+  },[]);
 
 
-  const handleSubmit = () => {
-    dispatch(newDeckClose());
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    await dispatch(createNewDeck({deckName, commander_id: deckCommander, user_id: sessionUser.id}))
+    await dispatch(newDeckClose());
+  }
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
   }
 
 
@@ -71,7 +93,23 @@ const CreateDeckForm = () => {
         className={classes.items}
         color='secondary'
       />
-      <Select />
+      <FormControl className={classes.items}>
+        <InputLabel id='commander-select-label'>Pick Your Commander</InputLabel>
+        <Select
+          className={classes.item}
+          id='commander-select'
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={deckCommander}
+          onChange={(e) => setDeckCommander(e.target.value)}
+        >
+          <MenuItem value="None">
+            <em>None</em>
+          </MenuItem>
+          {commanders?.map(commander => <MenuItem value={commander.id}>{commander.name}</MenuItem>)}
+        </Select>
+      </FormControl>
       <Button
         type='submit'
         variant='contained'
