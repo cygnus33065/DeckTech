@@ -51,7 +51,7 @@ export default function SearchDrawer() {
 
   return (
     <div>
-      <Drawer anchor='left' open={isOpen} onClose={toggleDrawer} className={classes.drawer}>
+      <Drawer BackdropProps={{ invisible: true }} anchor='left' open={isOpen} onClose={toggleDrawer} className={classes.drawer}>
         <TextField
         id='search-field'
         label='Search for a card'
