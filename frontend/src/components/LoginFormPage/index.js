@@ -76,6 +76,16 @@ export default function LoginFormPage() {
     dispatch(openSignup());
   }
 
+  const demoLogin = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))
+      .catch((res) => {
+        if (res.data){
+          dispatch(closeLogin())
+        }
+      })
+  }
+
 
   return (
     <form className={classes.paper} noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -105,6 +115,7 @@ export default function LoginFormPage() {
       color='secondary'
       />
       <Button type='submit' variant="contained" className={classes.items}>Login</Button>
+      <Button onClick={demoLogin} variant="contained" className={classes.items}>Demo Login</Button>
       <Typography className={classes.items}>
       <Link href='#' onClick={switchModal}>Don't have an account? Click here to signup.</Link>
       </Typography>

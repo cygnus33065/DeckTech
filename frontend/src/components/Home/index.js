@@ -3,11 +3,17 @@ import {useDispatch, useSelector} from 'react-redux'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
 import {makeStyles} from '@material-ui/core/styles';
-import {getBannerImage} from '../../store/cards'
 
+
+import {getBannerImage} from '../../store/cards'
 import {openSearch, closeSearch} from '../../store/modal'
 import SearchDrawer from '../SearchDrawer';
+import {homePageDecks} from '../../store/deck'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +37,26 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+  },
+  card: {
+    height: '250px',
+    width: '250px',
+    backgroundColor: theme.palette.primary.light,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // paddingTop: '150px'
+  },
+  decks: {
+    // paddingTop: '100px',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  content: {
+    width: '175px',
+    height: '175px',
+    borderRadius: '5px',
   }
 }))
 
@@ -40,6 +66,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const bannerImage = useSelector((state) => state.cardsReducer.image)
   const isOpen = useSelector((state) => state.modalReducer.searchShow);
+  const decks = useSelector((state) => state.decksReducer.homeDecks)
 
 
   const toggleDrawer = () => {
@@ -65,6 +92,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getBannerImage())
+    dispatch(homePageDecks())
   }, [dispatch]);
 
   return (
@@ -76,6 +104,14 @@ const HomePage = () => {
       </Box>
       <Button onClick={toggleDrawer}>Open search</Button>
       {isOpen && (<SearchDrawer/>)}
+      <Box className={classes.decks}>
+        {decks?.map( deck => (
+            <Card className={classes.card}>
+              <CardHeader title={deck.name} />
+              <CardMedia className={classes.content} image={deck.Card.art_url}/>
+            </Card>
+        ))}
+      </Box>
     </>
   )
 }

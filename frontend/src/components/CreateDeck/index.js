@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import {makeStyles} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import SearchIcon from '@material-ui/icons/Search';
@@ -8,6 +9,7 @@ import CardDrawer from "../CardDrawer"
 import {openCardSearch, closeCardSearch} from "../../store/modal"
 import CreateDeckForm from './CreateDeckForm';
 import {newDeckOpen, newDeckClose} from '../../store/modal'
+import {openLogin, closeLogin, openSignup, closeSignup} from "../../store/modal"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +44,7 @@ const CreateDeck = () => {
   const dispatch = useDispatch();
   const cardOpen = useSelector((state) => state.modalReducer.cardSearchShow);
   const formOpen = useSelector((state) => state.modalReducer.newDeck);
+  const sessionUser = useSelector((state) => state.session.user);
 
   const toggleCardDrawer = () => {
     if(cardOpen){
@@ -52,6 +55,9 @@ const CreateDeck = () => {
   }
 
 
+  if (!sessionUser) {
+    dispatch(openLogin())
+  }
 
 
   return (

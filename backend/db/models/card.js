@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     isLegal: DataTypes.STRING
   }, {});
   Card.associate = function(models) {
-    // Card.belongsTo(models.Deck, {foreignKey: "commander_id"})
+    Card.hasOne(models.Deck, {foreignKey: "commander_id"})
 
     const columnMapping = {
       through: 'DeckCard',

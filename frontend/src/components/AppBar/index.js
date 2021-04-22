@@ -137,6 +137,10 @@ export default function ButtonAppBar() {
     history.push('/createdeck')
   }
 
+  const forwardHome = () => {
+    history.push('/')
+  }
+
   return (
     <div className={classes.root}>
       <AppBar postion="static">
@@ -159,7 +163,7 @@ export default function ButtonAppBar() {
           <Typography variant="h4"  className={classes.title}>
           {/* <Box textAlign="center" m={1}>
           </Box> */}
-          <Box  textAlign="center" className={classes.box} m={1}>
+          <Box  onClick={forwardHome} textAlign="center" className={classes.box} m={1}>
             <img src={dtLogo} style={{width:"75px"}} alt="logo"/>
               DeckTech
           </Box>

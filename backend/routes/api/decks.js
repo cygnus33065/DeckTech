@@ -14,7 +14,7 @@ router.get('/:id', asyncHandler(async(req,res) => {
 }))
 
 router.get('/', asyncHandler(async (req,res) => {
-  const decks = await Deck.findAll({limit: 6});
+  const decks = await Deck.homePage()
 
   return res.json(decks);
 }))
