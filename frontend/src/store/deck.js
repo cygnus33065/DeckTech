@@ -2,6 +2,7 @@ import {fetch} from './csrf'
 
 const NEW_DECK = 'deck/new'
 const HOME_DECKS = 'deck/home'
+const SEARCH_DECKS = 'deck/search'
 
 const newDeck = (deck) => ({
   type: NEW_DECK,
@@ -10,6 +11,11 @@ const newDeck = (deck) => ({
 
 const homeDecks = (decks) => ({
   type: HOME_DECKS,
+  decks
+})
+
+const setDecks = (decks) => ({
+  type: SEARCH_DECKS,
   decks
 })
 
@@ -32,8 +38,22 @@ export const homePageDecks = () => async (dispatch) => {
   return decks
 }
 
+export const searchDecks = (query) => async (dispatch) => {
+  const res = await fetch('/api/decks/search', {
+    method: "POST",
+    body: JSON.stringify({'query': query})
+  })
+  const decks = res.data;
+  dispatch(setDecks(decks));
+  return decks
+};
 
-const initialState = {deck: null}
+
+const initialState = {
+  deck: null,
+  homeDecks: null,
+  searchDecks: null,
+}
 
 function decksReducer(state = initialState, action) {
   let newState;
@@ -43,6 +63,9 @@ function decksReducer(state = initialState, action) {
       return newState
     case HOME_DECKS:
       newState = Object.assign({}, state, {homeDecks: action.decks})
+      return newState;
+    case SEARCH_DECKS:
+      newState = Object.assign({}, state, {searchDecks: action.decks})
       return newState;
     default:
       return state;

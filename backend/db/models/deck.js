@@ -1,5 +1,5 @@
 'use strict';
-
+const Sequelize = require('sequelize');
 const {Card} = require('./')
 
 module.exports = (sequelize, DataTypes) => {
@@ -28,5 +28,17 @@ module.exports = (sequelize, DataTypes) => {
 
     Deck.belongsToMany(models.Card, columnMapping)
   };
+
+  const Op = Sequelize.Op;
+
+  Deck.searchDecks = async function(query) {
+    return await Deck.findAll({
+      where: {
+        name: {[Op.iLike]: `%${query}%`}
+      },
+      limit: 20
+    })
+  }
+
   return Deck;
 };

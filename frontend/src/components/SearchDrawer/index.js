@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-// import clsx from 'clsx';
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from '@material-ui/core/Drawer';
+import TextField from '@material-ui/core/TextField';
+import { Typography } from '@material-ui/core';
 // import Button from "@material-ui/core/Button"
 // import SearchIcon from '@material-ui/icons/Search';
-import TextField from '@material-ui/core/TextField';
 
 import {openSearch, closeSearch} from '../../store/modal';
-// import Card from '../Card'
-// import { Typography } from '@material-ui/core';
+import {searchDecks} from '../../store/deck'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     width:'50px',
     height: '50px',
   },
+  result:{
+    marginTop: '20px'
+  }
 }))
 
 
@@ -35,11 +38,12 @@ export default function SearchDrawer() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.modalReducer.searchShow)
-  const cards = useSelector((state) => state.cardsReducer.cards)
+  const decks = useSelector((state) => state.decksReducer.searchDecks)
+  const [search, setSearch] = useState();
+  const [decksResult, setDecksResult] = useState();
 
 
 
-  // console.log(cards)
 
   const toggleDrawer = () => {
     if (isOpen){
@@ -49,6 +53,16 @@ export default function SearchDrawer() {
     }
   }
 
+  useEffect(() => {
+    dispatch(searchDecks(search))
+  }, [search, dispatch])
+
+  useEffect(() => {
+    setDecksResult(decks);
+  }, [decks,dispatch])
+
+
+
   return (
     <div>
       <Drawer BackdropProps={{ invisible: true }} anchor='left' open={isOpen} onClose={toggleDrawer} className={classes.drawer}>
@@ -57,8 +71,9 @@ export default function SearchDrawer() {
         label='Search for a card'
         variant='filled'
         className={classes.search}
+        onChange={(e) => setSearch(e.target.value)}
         color='secondary'/>
-
+        {decksResult && decksResult.map(deck => <Typography className={classes.result} variant='h4'>{deck.name}</Typography> )}
       </Drawer>
     </div>
   )
