@@ -89,7 +89,7 @@ function App() {
         <Route path="/createdeck" exact={true}>
           <CreateDeck />
         </Route>
-        <Route exact={true} path='/deck/:id'>
+        <Route exact={true} path='/deck'>
           <Deck />
         </Route>
       </Switch>

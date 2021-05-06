@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler')
 
 
-const {Card, DeckCard} = require('../../db/models')
+const {Card, Deck} = require('../../db/models')
 
 const router = express.Router();
 
@@ -29,8 +29,12 @@ router.get('/commanders', asyncHandler(async (req,res) => {
 }))
 
 router.post('/deck', asyncHandler(async (req,res) => {
-  const {deck_id} = req.body;
-  const deckCards = await DeckCard.findAll({where: deck_id})
+  const id = req.body.deck_id.deck_id;
+  console.log(id)
+  const deckCards = await Deck.findAll({
+    where: id,
+    include: 'Cards'
+  })
 
   const cards = res.json(deckCards);
   return cards;
