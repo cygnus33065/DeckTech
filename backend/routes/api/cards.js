@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler')
 
 
-const {Card} = require('../../db/models')
+const {Card, DeckCard} = require('../../db/models')
 
 const router = express.Router();
 
@@ -28,5 +28,12 @@ router.get('/commanders', asyncHandler(async (req,res) => {
   return res.json(commanders)
 }))
 
+router.post('/deck', asyncHandler(async (req,res) => {
+  const {deck_id} = req.body;
+  const deckCards = await DeckCard.findAll({where: deck_id})
+
+  const cards = res.json(deckCards);
+  return cards;
+}))
 
 module.exports = router

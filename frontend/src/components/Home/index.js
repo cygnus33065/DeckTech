@@ -14,6 +14,7 @@ import {getBannerImage} from '../../store/cards'
 import {openSearch, closeSearch} from '../../store/modal'
 import SearchDrawer from '../SearchDrawer';
 import {homePageDecks} from '../../store/deck'
+import DeckCard from "../DeckCard"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,10 +107,7 @@ const HomePage = () => {
       {isOpen && (<SearchDrawer/>)}
       <Box className={classes.decks}>
         {decks?.map( deck => (
-            <Card className={classes.card}>
-              <CardHeader title={deck.name} />
-              <CardMedia className={classes.content} image={deck.Card.art_url}/>
-            </Card>
+            <DeckCard deck={deck}/>
         ))}
       </Box>
     </>

@@ -36,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
       where: {
         name: {[Op.iLike]: `%${query}%`}
       },
-      limit: 20
+      limit: 20,
+      include: "Card"
     })
   }
 

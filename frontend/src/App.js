@@ -11,7 +11,7 @@ import ButtonAppBar from "./components/AppBar"
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import CreateDeck from './components/CreateDeck'
-
+import Deck from "./components/Deck";
 
 function App() {
   const dispatch = useDispatch();
@@ -88,6 +88,9 @@ function App() {
         </Route>
         <Route path="/createdeck" exact={true}>
           <CreateDeck />
+        </Route>
+        <Route exact={true} path='/deck/:id'>
+          <Deck />
         </Route>
       </Switch>
       {/* )} */}

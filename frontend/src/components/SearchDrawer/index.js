@@ -8,8 +8,8 @@ import { Typography } from '@material-ui/core';
 // import SearchIcon from '@material-ui/icons/Search';
 
 import {openSearch, closeSearch} from '../../store/modal';
-import {searchDecks} from '../../store/deck'
-
+import {searchDecks} from '../../store/deck';
+import DeckCard from "../DeckCard";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,14 +19,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.light,
     backgroundColor: theme.palette.primary.light,
   },
-  drawer:{
-    background: theme.palette.primary.main,
-    color: theme.palette.primary.main,
-  },
   card:{
     marginTop:'20px',
-    width:'50px',
-    height: '50px',
+    width:'25px',
+    height: '25px',
   },
   result:{
     marginTop: '20px'
@@ -73,7 +69,7 @@ export default function SearchDrawer() {
         className={classes.search}
         onChange={(e) => setSearch(e.target.value)}
         color='secondary'/>
-        {decksResult && decksResult.map(deck => <Typography className={classes.result} variant='h4'>{deck.name}</Typography> )}
+        {decksResult && decksResult?.map(deck => <DeckCard className={classes.card} deck={deck}/>)}
       </Drawer>
     </div>
   )
